@@ -32,6 +32,7 @@ class Extract:
                 db = db, cursorclass = pymysql.cursors.DictCursor)
         cur = db.cursor()
         cur.execute(query)
+        dataset = []
         for row in cur:
             dataset.append(row)
         db.commit()
