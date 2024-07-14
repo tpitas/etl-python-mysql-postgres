@@ -27,6 +27,7 @@ class Load:
     def to_mysql(self, host, username, password, db, table, dataset): # Need MySQL Connection Strings
         # For installation of MySQL follow https://dev.mysql.com/doc/refman/8.4/en/installing.html
         # Database and Table to be created prior of to_mysql method
+        # host = "localhost", username = "root", password = "Passw0rd", db = "dbstocks", table = "stocks"
         if not dataset:
             raise Exception("Input dataset must have at least one item.")
         if not db:
@@ -54,4 +55,7 @@ dataset = ex.from_csv(file_path = '<------->/stocks.csv', delimiter = ',') # To 
 
 #### Loading
 lo = Load()
-lo.from_csv(file_path = '<------->/stocks.csv', dataset = dataset) # To be replaced by file path
+# lo.from_csv(file_path = '<------->/stocks.csv', dataset = dataset) # To be replaced by file path
+
+lo.to_mysql(host = "localhost", username = "root", password = "Passw0rd", db = "dbstocks", table = "stocks", dataset = dataset)
+
