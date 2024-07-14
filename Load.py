@@ -24,8 +24,26 @@ class Load:
         with open(file_path, 'w') as jsonfile:  
             json.dump(dataset, jsonfile)
             
-    def to_mysql(self): # Need MySQL Connection Strings
-        pass
+    def to_mysql(self, host, username, password, db, table, dataset): # Need MySQL Connection Strings
+        # For installation of MySQL follow https://dev.mysql.com/doc/refman/8.4/en/installing.html
+        # Database and Table to be created prior of to_mysql method
+        if not dataset:
+            raise Exception("Input dataset must have at least one item.")
+        if not db:
+            raise Exception("Input a valid database name.")
+        if not table:
+            raise Exception("Input a valid table name")    
+        db = pymysql.connect(host = host, user=username, password = password, db = db, 
+                        cursorclass = pymysql.cursors.DictCursor)
+        cur = db.cursor()
+        for row in dataset:
+            placeholder = ", ".join(["%s"] * len(row))
+            stmt = "insert into {table} ({columns}) values ({values});".format(table=table,
+                    columns=",".join(row.keys()), values = placeholder)
+            cur.execute(stmt, list(row.values()))
+        db.commit()
+        cur.close()
+        db.close()         
 
     def to_postgres(self):
         pass
