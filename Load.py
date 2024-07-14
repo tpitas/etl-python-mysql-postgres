@@ -56,6 +56,7 @@ dataset = ex.from_csv(file_path = '<------->/stocks.csv', delimiter = ',') # To 
 #### Loading
 lo = Load()
 # lo.from_csv(file_path = '<------->/stocks.csv', dataset = dataset) # To be replaced by file path
+# lo.to_json(file_path = '<------->/stocks.json', dataset = dataset) # To be replaced by json file path
 
 lo.to_mysql(host = "localhost", username = "root", password = "Passw0rd", db = "dbstocks", table = "stocks", dataset = dataset)
 
