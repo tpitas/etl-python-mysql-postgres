@@ -1,4 +1,5 @@
 # Creating a target database and table to load
+# MySQL has been used
 
 DROP DATABASE IF EXISTS dbstocks;
 CREATE DATABASE dbstocks;
