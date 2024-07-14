@@ -24,7 +24,7 @@ class Load:
         with open(file_path, 'w') as jsonfile:  
             json.dump(dataset, jsonfile)
             
-    def to_mysql(self):
+    def to_mysql(self): # Need MySQL Connection Strings
         pass
 
     def to_postgres(self):
